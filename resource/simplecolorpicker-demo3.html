@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style>
+    .simpleColorDisplay{
+        display:inline-block;
+        vertical-align:middle;
+        margin-right:5px;
+        border-radius:100%;
+    }
+    .simpleColorChooser{
+        position:absolute;
+        background:#fff;
+        border:1px solid #aaa !important;
+        border-radius:5px;
+        box-sizing: content-box;
+    }
+    .simpleColorCell{
+        border-radius:3px;
+        border:1px solid #ccc;
+        box-sizing:border-box;
+    }
+    .custom{
+        display:none !important;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-simple-color/jquery.simple-color.min.js"></script>
+<script  type="text/javascript">
+$(function(){
+    $('.color_colors').simpleColor({
+        // 選択色ボックスのborderスタイル設定
+        border : "1px solid #aaa",
+        // 選択色ボックスの幅の設定
+        boxWidth : 50,
+        // 選択色ボックスの高さの設定
+        boxHeight : 50,
+        
+    	//パレット選択色の設定
+    	colors: ["ffdb83","fdc55f","fab545","f6992d","f3872d",
+    	         "f6bac4","ef798b","ed5464","ec465a","d51d35",
+    	         "eabad6","dd9ec5","cb86b8","aa4598","a53491",
+    	         "afc8e7","697ebb","2e5fa8","273f94","273585",
+                 "8bd1d2","7ecdcd","00b6b3","00aa9f","009887"],
+    	//パレットの列数の設定
+    	columns : 5,
+    	//パレットのセルの高さの設定
+    	cellHeight : 30,
+    	//パレットのセルの幅の設定
+    	cellWidth : 30,
+    	//パレットのセル間のマージン設定
+    	cellMargin　:5,
+    	buttonClass : "custom"
+    });
+    
+    $("#show_color").on("click",
+        function(e)
+        {
+             $("#show_color_label").text($("input.color_colors").val());
+        });
+});
+</script>
+</head>
+<body>
+    <label for="color3">Custom Mode</label>
+    <input class='color_colors'/>
+    <br>
+    <button id="show_color">Show Select Color</button>
+    <br>
+    <span id="show_color_label"></span>
+</body>
+</html>

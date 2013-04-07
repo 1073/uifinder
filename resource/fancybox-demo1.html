@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<script type="text/javascript" src="js/fancybox/source/jquery.fancybox.js?v=2.1.4"></script>
+<link rel="stylesheet" type="text/css" href="js/fancybox/source/jquery.fancybox.css?v=2.1.4" media="screen" />
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+<style>
+    div{margin:0 auto;}
+</style>
+<script  type="text/javascript">
+$(function () {
+    $('.fancybox').fancybox();
+})
+</script>
+</head>
+<body>
+    <label for="sample">Default</label>
+    <div>
+        <a class="fancybox" href="img/sample-1.png" data-fancybox-group="gallery" title="Page Title 1"><img src="img/sample-1-s.png" alt="" /></a>
+        <a class="fancybox" href="img/sample-2.png" data-fancybox-group="gallery" title="Page Title 2"><img src="img/sample-2-s.png" alt="" /></a>
+        <a class="fancybox" href="img/sample-3.png" data-fancybox-group="gallery" title="Page Title 3"><img src="img/sample-3-s.png" alt="" /></a>
+        <a class="fancybox" href="img/sample-4.png" data-fancybox-group="gallery" title="Page Title 4"><img src="img/sample-4-s.png" alt="" /></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+    var $j = jQuery.noConflict();
+</script>
+<script type="text/javascript" src="js/moowheel_v02/mootools-1.2-core-nc.js"></script>
+<script type="text/javascript" src="js/moowheel_v02/mootools-1.2-more.js"></script>      
+<script type="text/javascript" src="js/moowheel_v02/excanvas.js"></script>
+<!--  --><script type="text/javascript" src="js/moowheel_v02/canvastext.js"></script>
+<script type="text/javascript" src="js/moowheel_v02/moowheel.js"></script>
+<script  type="text/javascript">
+
+$j(document).ready(function(){
+	// サンプルデータ取得
+	var data = createSampleData(20);
+	// 描画
+	var wheel = new MooWheel(data, $('sample'));
+});
+function createSampleData(count)
+{
+	var datas = [];
+	for(var i = 0; i < count; i++)
+	{
+		var data = {
+				id: i,
+				text : "Node " + i,
+			    connections : createConnection(count)};
+		datas.push(data);
+	}
+	return datas;
+}
+
+function createConnection(count)
+{
+	var rtn =[];
+	var randConnectCount = Math.floor( Math.random() * (count / 5) );
+	for(var i = 0; i < randConnectCount; i++)
+	{
+		var randConnect = Math.floor( Math.random() * (count + 1));
+		if(rtn.contains(randConnect)) i--;
+		else rtn.push(randConnect);
+	}
+	return rtn;
+}
+</script>
+</head>
+<body>
+    <label for="sample">Default</label>
+    <div id="sample" style="background:#000;"></div>
+</body>
+</html>

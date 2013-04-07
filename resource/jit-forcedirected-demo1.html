@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jit/jit.js"></script>
+<script  type="text/javascript">
+
+$(document).ready(function(){
+  var json = [
+        {
+            "id": "g0",
+            "name": "Name0",
+            "adjacencies":[{"nodeTo":"g1"}]
+        },
+        {
+            "id": "g1",
+            "name": "Name1",
+            "adjacencies":[{"nodeTo":"g0"}]
+        },
+        {
+            "id": "g2",
+            "name": "Name2",
+            "adjacencies":[{"nodeTo":"g0"},{"nodeTo":"g1"}]
+        },
+        {
+            "id": "g4",
+            "name": "Name4",
+            "adjacencies":[{"nodeTo":"g5"}]
+        },
+        {
+            "id": "g5",
+            "name": "Name5"
+        }
+  ];
+      var fd = new $jit.ForceDirected({
+        injectInto: 'sample',
+        Navigation: {
+          enable: true,
+          panning: 'avoid nodes',
+          zooming: 10
+        },
+        Edge: {
+          overridable: true,
+          color: '#333',
+          lineWidth: 0.6
+        },
+        //Native canvas text styling
+        Label: {
+          type: "HTML",
+          size: 8,
+          style: 'bold'
+        },
+        //Add Tips
+        Tips: {
+          enable: true,
+          onShow: function(tip, node) {
+            var count = 0;
+            node.eachAdjacency(function() { count++; });
+            tip.innerHTML = "<div class=\"tip-title\">" + node.name + "</div>"
+              + "<div class=\"tip-text\"><b>connections:</b> " + count + "</div>";
+          }
+        },
+        // Add node events
+        Events: {
+          enable: true,
+          type: 'Native',
+          onMouseEnter: function() {
+            fd.canvas.getElement().style.cursor = 'move';
+          },
+          onMouseLeave: function() {
+            fd.canvas.getElement().style.cursor = '';
+          },
+          onDragMove: function(node, eventInfo, e) {
+              var pos = eventInfo.getPos();
+              node.pos.setc(pos.x, pos.y);
+              fd.plot();
+          },
+          onTouchMove: function(node, eventInfo, e) {
+            $jit.util.event.stop(e);
+            this.onDragMove(node, eventInfo, e);
+          },
+          onClick: function(node) {
+            if(!node) return;
+            var html = "<h4>" + node.name + "</h4><b> connections:</b><ul><li>",
+                list = [];
+            node.eachAdjacency(function(adj){
+              list.push(adj.nodeTo.name);
+            });
+          }
+        },
+        //Number of iterations for the FD algorithm
+        iterations: 10,
+        //Edge length
+        levelDistance: 80,
+
+        onCreateLabel: function(domElement, node){
+          domElement.innerHTML = node.name;
+          var style = domElement.style;
+          style.fontSize = "0.6em";
+          style.color = "#333";
+        },
+
+        onPlaceLabel: function(domElement, node){
+          var style = domElement.style;
+          var left = parseInt(style.left);
+          var top = parseInt(style.top);
+          var w = domElement.offsetWidth;
+          style.left = (left - w / 2) + 'px';
+          style.top = (top + 10) + 'px';
+          style.display = '';
+        }
+      });
+
+      fd.loadJSON(json);
+      fd.computeIncremental({
+        iter: 40,
+        property: 'end',
+        onStep: function(perc){
+        },
+        onComplete: function(){
+          fd.animate({
+            modes: ['linear'],
+            transition: $jit.Trans.Elastic.easeOut,
+            duration: 2500
+          });
+        }
+      });
+});
+</script>
+</head>
+<body>
+    <label for="sample">Default</label>
+    <div id="sample" style="background:#fff;width:240px;height:300px;"></div>
+</body>
+</html>

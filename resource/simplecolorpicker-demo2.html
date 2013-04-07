@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-simple-color/jquery.simple-color.min.js"></script>
+<script  type="text/javascript">
+$(function(){
+    $('.color_show1').simpleColor({
+    	//カラーコードの表示／非表示設定
+    	displayColorCode :true,
+    	// カラーコードの表示位置の設定
+    	colorCodeAlign : "right",
+    	// カラーコードの文字色の設定
+    	colorCodeColor : "#000000"
+    });
+});
+</script>
+</head>
+<body>
+
+    <label for="color2">Display Color Code</label>
+    <input class='color_show1' value='#cc3333'/>
+    <br>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/colorbox/jquery.colorbox.js"></script>
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="js/colorbox/colorbox.css" />
+<style>
+    #picts{margin:0 auto;}
+    #cboxWrapper{font-size:12px;}
+</style>
+<script  type="text/javascript">
+$(function () {
+	$(".group1").colorbox({rel:'group1'});
+})
+</script>
+</head>
+<body>
+    <label for="sample">Default</label>
+    <div id="picts">
+        <a class="group1" href="img/sample-1.png" title="Page Title 1"><img src="img/sample-1-s.png" alt="" /></a>
+        <a class="group1" href="img/sample-2.png" title="Page Title 2"><img src="img/sample-2-s.png" alt="" /></a>
+        <a class="group1" href="img/sample-3.png" title="Page Title 3"><img src="img/sample-3-s.png" alt="" /></a>
+        <a class="group1" href="img/sample-4.png" title="Page Title 4"><img src="img/sample-4-s.png" alt="" /></a>
+    </div>
+</body>
+</html>

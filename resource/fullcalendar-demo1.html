@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+<link href="js/fullcalendar/fullcalendar.css" rel="stylesheet" />
+<style>
+#calendar {
+    width: 80%;
+    min-width: 480px;
+    margin: 0 auto;
+    font-size:0.8em;
+}
+.fc-content{
+    background-color: #fff;
+}
+.redEvent{
+	background-color:#f66;
+	border-color:#c66;
+}
+.greenEvent{
+	background-color:#3ca;
+	border-color:#0a9;
+}
+</style>
+<script src="js/fullcalendar/lib/jquery.min.js"></script>
+<script src="js/fullcalendar/lib/jquery-ui.custom.min.js"></script>
+<script src="js/fullcalendar/fullcalendar.min.js"></script>
+<script>
+
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$("#calendar").fullCalendar({
+		    // ƒwƒbƒ_İ’è
+			header: {
+				left: 'prev, next, today',
+				center: 'title',
+				right: 'month, agendaWeek, agendaDay'
+			},
+			// Tn‚Ü‚è‚Ì—j“ú‚ğİ’è
+			firstDay : 1,
+			editable: true,
+			events: [
+				{
+					title: "Trip",
+					start: new Date(y, m, d-5),
+					end: new Date(y, m, d-2),
+					className: "redEvent"
+				},
+				{
+					title: "Meeting",
+					start: new Date(y, m, d, 10, 30),
+					allDay: false,
+					className: "greenEvent"
+				},
+				{
+					title: "Birthday",
+					start: new Date(y, m, d+1, 19, 0),
+					end: new Date(y, m, d+1, 22, 30),
+				}
+			]
+		});
+		
+	});
+
+</script>
+
+</head>
+<body>
+<div id="calendar"></div>
+
+</body>
+</html>
